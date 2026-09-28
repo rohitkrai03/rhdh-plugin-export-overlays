@@ -1,0 +1,47 @@
+apiVersion: extensions.backstage.io/v1alpha1
+kind: Package
+metadata:
+  name: backstage-community-plugin-tekton
+  namespace: rhdh
+  title: Tekton
+  links:
+    - url: https://red.ht/rhdh
+      title: Homepage
+    - url: https://github.com/backstage/community-plugins/issues
+      title: Bugs
+    - title: Source Code
+      url: https://github.com/backstage/community-plugins/tree/main/workspaces/tekton
+  annotations:
+    backstage.io/source-location: url:https://github.com/backstage/community-plugins/tree/main/workspaces/tekton
+  tags: []
+spec:
+  packageName: '@backstage-community/plugin-tekton'
+  # Tag: bs_1.54.6__4.0.2
+  dynamicArtifact: "oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/backstage-community-plugin-tekton@sha256:81bfa06f0bda68a7db817f81e2d4637095200c3755d48758dea6ac0587693aa5"
+  version: 4.0.2
+  backstage:
+    role: frontend-plugin
+    supportedVersions: 1.54.6
+  author: Red Hat
+  support: community
+  lifecycle: active
+  partOf:
+    - tekton
+  appConfigExamples:
+    - title: Default configuration
+      content:
+        dynamicPlugins:
+          frontend:
+            backstage-community.plugin-tekton:
+              translationResources:
+                - importName: tektonTranslations
+                  ref: tektonTranslationRef
+              mountPoints:
+                - mountPoint: entity.page.ci/cards
+                  importName: TektonCI
+                  config:
+                    layout:
+                      gridColumn: 1 / -1
+                    if:
+                      allOf:
+                        - isTektonCIAvailable
