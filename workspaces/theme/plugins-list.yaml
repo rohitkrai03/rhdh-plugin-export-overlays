@@ -1,2 +1,5 @@
 plugins/theme:
 plugins/bui-test:
+plugins/bcc-test:
+plugins/mui4-test:
+plugins/mui5-test:
